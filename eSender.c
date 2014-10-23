@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     char buf[1024],addr[17];
     char temp[1024];
     char usr[64],pwd[64];
-    int code,i;
+    int code,i,nrcpt;
 
     // Read hostname and port from the command-line
     if (argc > 2)
@@ -86,8 +86,14 @@ int main(int argc, char **argv)
             scanf("%s",temp);
             sprintf(msg,"MAIL FROM:%s\r\n",temp);
             printf("%s",msg );
+            printf("Enter Number of recipient : ");
+            scanf("%d", &nrcpt);
         }
         else if (i==5){
+            if (nrcpt>1){
+              i--;
+              nrcpt--;
+            }
             printf ("Enter Email Recipient : ");
             scanf("%s",temp);
             sprintf(msg,"RCPT TO:%s\r\n",temp);
