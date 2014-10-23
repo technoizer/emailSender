@@ -39,11 +39,11 @@ int main(int argc, char **argv)
     //printf ("DEBUG: server address: %u %s\n",ptr->s_addr,inet_ntoa(*ptr));
     strcpy(addr,inet_ntoa(*ptr));
     sockcli = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-  	printf("Making Socket Successfull\n");
-  	bzero(&servaddr, sizeof(servaddr)); //sama seperti memset(a,0,sizeof(a));
-  	servaddr.sin_family = AF_INET;
-  	servaddr.sin_port = htons(port_number);
-  	inet_aton(inet_ntoa(*ptr), &servaddr.sin_addr);
+    printf("Making Socket Successfull\n");
+    bzero(&servaddr, sizeof(servaddr)); //sama seperti memset(a,0,sizeof(a));
+    servaddr.sin_family = AF_INET;
+    servaddr.sin_port = htons(port_number);
+    inet_aton(inet_ntoa(*ptr), &servaddr.sin_addr);
 
     retval = connect(sockcli, (struct sockaddr *)&servaddr, sizeof(servaddr));
     printf("Connect Successfull\n");
@@ -51,11 +51,11 @@ int main(int argc, char **argv)
     buf[retval] = '\0';
     printf("%s", buf);
 
-  	/*sprintf(msg,"EHLO %s\r\n",addr);
-  	write(sockcli, msg, strlen(msg));
-  	retval=read(sockcli, buf, sizeof(buf)-1);
-  	buf[retval] = '\0';
-  	printf("%s", buf);*/
+    /*sprintf(msg,"EHLO %s\r\n",addr);
+    write(sockcli, msg, strlen(msg));
+    retval=read(sockcli, buf, sizeof(buf)-1);
+    buf[retval] = '\0';
+    printf("%s", buf);*/
     
     sprintf(msg,"AUTH LOGIN\r\n");
     write(sockcli, msg, strlen(msg));
